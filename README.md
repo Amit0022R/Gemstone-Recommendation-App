@@ -1,36 +1,29 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Vedic Gemstone AI Recommender
 
-## Getting Started
+An automated, AI-augmented Micro-SaaS framework built with Next.js 16 (Turbopack Architecture) and Tailwind CSS. The application processes user astrological identities paired with core lifestyle vectors to compute and prescribe precise metaphysical gemstone remediation layouts.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🎯 Engineering Purpose & Project Objectives
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The primary objective of this system is to demonstrate how modern full-stack engineering principles, architectural patterns, and decoupled view structures can be delivered cleanly within a limited development timeframe.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Rather than over-engineering heavy database infrastructure setups initially, this project prioritizes **Separation of Concerns (SoC)**, defensive runtime programming, non-blocking page state hydration, and highly optimized client-side computational operations.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 🏛️ Architectural Code Splitting (Folder Tree)
 
-To learn more about Next.js, take a look at the following resources:
+The workspace completely deprecates monolithic files, splitting layouts into specialized, single-responsibility micro-components to ensure the codebase remains highly auditable and modular:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```text
+├── app/
+│   ├── page.tsx               # Root Entry Controller Gateway
+│   └── result/
+│       └── page.tsx           # Dynamic Parameter Extraction Hub
+├── components/
+│   ├── BackgroundOrbs.tsx     # Hardware-accelerated Canvas Mesh Particles
+│   ├── MetricBanner.tsx       # Live Micro-telemetry Status Block
+│   ├── ResultHeader.tsx       # State Actions & Export Control Modulators
+│   └── GemstoneCard.tsx       # Isolated Entity Viewport Data Renderer
+│   └── ResultSkeleton.tsx     # Isolated Hydra-loader Spinning View
