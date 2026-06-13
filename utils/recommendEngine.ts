@@ -1,7 +1,7 @@
-import { Gemstone, UserInput } from '@/types';
-import { GEMSTONE_DATA } from '@/data/gemstones';
+import { UserInput } from '@/types';
+import { GEMSTONE_DATA, GemstoneExtended } from '@/data/gemstones';
 
-export function runRecommendationEngine(input: UserInput): Gemstone[] {
+export function runRecommendationEngine(input: UserInput): GemstoneExtended[] {
   const { zodiac, primaryConcern } = input;
   const lowerZodiac = zodiac.toLowerCase();
 

@@ -2,17 +2,14 @@
 
 import { useEffect, useState, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
-import { Gemstone } from '@/types';
+import { GemstoneExtended } from '@/data/gemstones';
 
 // Modular Sub-Components Imports
 import ResultHeader from '@/components/ResultHeader';
 import GemstoneCard from '@/components/GemstoneCard';
 import ResultSkeleton from '@/components/ResultSkeleton';
 
-interface EnhancedGemstone extends Gemstone {
-  rarity?: number;
-  priceTier?: 'Premium' | 'Elite' | 'Royal';
-}
+type SortOption = 'default' | 'rarity-desc' | 'rarity-asc';
 
 function ResultContent() {
   const searchParams = useSearchParams();
@@ -20,8 +17,8 @@ function ResultContent() {
   const zodiac = searchParams.get('zodiac');
   const concern = searchParams.get('concern');
 
-  const [gems, setGems] = useState<EnhancedGemstone[]>([]);
-  const [sortBy, setSortBy] = useState<'default' | 'rarity-desc' | 'rarity-asc'>('default');
+  const [gems, setGems] = useState<GemstoneExtended[]>([]);
+  const [sortBy, setSortBy] = useState<SortOption>('default');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(true);
 
@@ -39,12 +36,7 @@ function ResultContent() {
       .then((res) => res.json())
       .then((resData) => {
         if (resData.success) {
-          const parsedGems = resData.data.map((gem: Gemstone, idx: number) => ({
-            ...gem,
-            rarity: (gem as any).rarity || (5 - (idx % 2)),
-            priceTier: (gem as any).priceTier || (idx % 2 === 0 ? 'Elite' : 'Premium')
-          }));
-          setGems(parsedGems);
+          setGems(resData.data);
         } else {
           setError('Failed to process quantum configurations.');
         }

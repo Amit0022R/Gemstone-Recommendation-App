@@ -1,10 +1,12 @@
 'use client';
 
+type SortOption = 'default' | 'rarity-desc' | 'rarity-asc';
+
 interface ResultHeaderProps {
   zodiac: string | null;
   concern: string | null;
-  sortBy: string;
-  setSortBy: (val: any) => void;
+  sortBy: SortOption;
+  setSortBy: (val: SortOption) => void;
 }
 
 export default function ResultHeader({ zodiac, concern, sortBy, setSortBy }: ResultHeaderProps) {
@@ -31,7 +33,7 @@ export default function ResultHeader({ zodiac, concern, sortBy, setSortBy }: Res
           <select
             id="sort-select"
             value={sortBy}
-            onChange={(e) => setSortBy(e.target.value)}
+            onChange={(e) => setSortBy(e.target.value as SortOption)}
             className="bg-transparent text-xs font-medium text-slate-700 focus:outline-none cursor-pointer"
           >
             <option value="default">Cosmic Order</option>

@@ -12,7 +12,7 @@ export async function POST(request: Request) {
 
     const recommendations = runRecommendationEngine(body);
     return NextResponse.json({ success: true, data: recommendations });
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }
