@@ -89,6 +89,15 @@ function ResultContent() {
   );
 }
 
+// Separate logic safety wrapper block to satisfy Next.js client hook optimization rules
+function IngestionSuspenseBoundary() {
+  return (
+    <Suspense fallback={<ResultSkeleton />}>
+      <ResultContent />
+    </Suspense>
+  );
+}
+
 export default function ResultPage() {
   const router = useRouter();
   return (
@@ -108,9 +117,7 @@ export default function ResultPage() {
             ← Re-index Framework
           </button>
           
-          <Suspense fallback={<ResultSkeleton />}>
-            <ResultContent />
-          </Suspense>
+          <IngestionSuspenseBoundary />
         </div>
       </main>
     </>
