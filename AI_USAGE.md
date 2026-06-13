@@ -1,21 +1,47 @@
-# AI Usage Declaration
+# PART 1: SHORT PROJECT NOTES
 
-This document explicitly details the utilization of AI tooling during the development of the Vedic Gemstone AI Recommender system, maintaining complete transparency regarding oversight, architectural design, and codebase assembly.
+### Why This Tech Stack?
+* Framework: Next.js 16 (App Router with Turbopack)
+  - Why: Fast development speeds, easy routing, and clean handling of rendering layouts.
+* Language: TypeScript (Strict Mode)
+  - Why: Fixes data type bugs before deployment and ensures components speak to each other correctly.
+* Styling & Motion: Tailwind CSS & Framer Motion
+  - Why: Gives a clean, minimalist UI design with micro-interactions without messing up page layouts.
 
-## 🛠️ Tools Utilized
-* **Gemini / ChatGPT** (Large Language Models)
+### How I Structured the Code (Architecture)
+Instead of putting everything into a single massive file, I split the project into specialized, small files:
+* App Directory handles the page routing layers: `app/page.tsx` for input and `app/result/page.tsx` for calculations.
+* Custom layout components live completely separate: `BackgroundOrbs.tsx` for canvas effects, `MetricBanner.tsx` for real-time status UI, and `GemstoneCard.tsx` to display individual card items.
+This prevents code clutter and makes it incredibly easy to debug or add new features later.
 
-## 🎯 Scope of AI Leveraging
-Given the strict and limited time frame of this engineering challenge, AI assistance was selectively leveraged to optimize execution speed in the following areas:
+### Engineering Assumptions & Trade-offs
+1. No External Database & Auth (Deliberate Choice):
+   - Given the strict time limit of this challenge, spending hours setting up standard MongoDB connections or third-party login forms (like Clerk) has very low engineering value.
+   - The Trade-off: I assumed user inputs can be safely carried over via URL parameters (?zodiac=X&concern=Y). This allowed me to do all sorting computations natively in-memory on the client layer using simple arrays. The result? Zero database network delays and instant 0ms display execution.
+2. Crash Protection: Production data feeds can be random or incomplete. I added simple fallback checkers (like gem.rarity || 3) to make sure the front-end layout never breaks or crashes, no matter what backend data comes in.
+3. Native Print System: Instead of bloat-loading heavy external PDF generation libraries, I used Tailwind's utility rules (like print:hidden) so that pressing "window.print()" instantly outputs a clean, minimal physical paper report.
 
-1. **Boilerplate Integration:** Accelerating standard Tailwind CSS configurations and structure initializations for Next.js App Router templates.
-2. **Contextual Layout Revamping:** Assisting with light-shade, high-contrast visual structural tokens to maintain consistent SaaS dashboard aesthetics.
-3. **Data Mapping Structuring:** Assisting in mapping standard astrological key-value pairs into structured, type-safe arrays for the TypeScript mock data registry.
+### Future Improvements
+* Session Authentication: Move route-param data serialization into a proper NextAuth.js setup using secure JWT state signatures.
+* Database Layer: Attach a solid relational database (PostgreSQL using Prisma) combined with a Redis cache map to log historical search analytics.
 
-## 🧠 Engineering Oversight & Human Decisions
-While syntax formatting and mock objects were accelerated using AI, all critical system design decisions were architected entirely by the developer:
+---
 
-* **Separation of Concerns:** Dictated the decoupling of the core evaluation framework (`utils/recommendEngine.ts`) from the visual viewports and entry layer handlers to allow clean modular scaling.
-* **Modular View Architecture (Code Splitting):** Refactored the core landing workspace by isolating specialized layout units (`BackgroundOrbs.tsx`, `MetricBanner.tsx`) from the main state coordinator, optimizing readability and code auditability for evaluations.
-* **Modern Ingestion Patterns:** Implemented the strict Next.js 15+ `<Suspense />` layout framework manually around client-side parameter indexing to guarantee non-blocking layout hydration on the results track.
-* **Scope & Resource Management:** Intentionally bypassed heavy, time-consuming external database configurations to prioritize business logic testing, deterministic array mutations (`Array.prototype.sort`), and rapid deployment timelines within the strict deadline.
+# PART 2: AI_USAGE.md (AI Usage Declaration)
+
+This file explains exactly how AI assistance was used during the development of this repository.
+
+### Tools Used
+* Gemini / ChatGPT (Large Language Models)
+
+### Where AI Helped
+To speed up development and beat the deadline, I used AI tools specifically for:
+1. Fast Setup: Generating basic Tailwind configuration properties and Next.js base page templates.
+2. UI Styling Tweaks: Fine-tuning component color tokens, frosted-glass effects, and grid alignments.
+3. Data Matrix Arrays: Structuring the astrological key-value pairs into a clean TypeScript mock dataset quickly.
+
+### Where I Overrode AI (Human Decisions)
+While the AI helped with boilerplate code and formatting, all core architecture choices were made entirely by me:
+* Code Splitting: I chose to separate visual styling components from state controllers to maintain proper structure.
+* Hydration Control: I manually implemented the Next.js <Suspense /> layout around the search hooks to ensure the dynamic results page handles asynchronous tracking safely.
+* Feature Focus: I consciously prioritized execution speed, UI responsiveness, and runtime data fallbacks over template authentication or empty databases to deliver a genuinely working solution before the timer ran out.
