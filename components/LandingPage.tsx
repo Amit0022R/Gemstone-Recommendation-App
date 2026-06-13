@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 
-// Decoupled clean architectural view elements
 import BackgroundOrbs from './BackgroundOrbs';
 import MetricBanner from './MetricBanner';
 
@@ -23,13 +22,11 @@ export default function LandingPage() {
 
     setLoading(true);
 
-    // Dynamic routing path with search parameters allocation
     setTimeout(() => {
       router.push(`/result?zodiac=${zodiac}&concern=${concern}`);
     }, 1600);
   };
 
-  // Hardware-accelerated hardware variant arrays for core layout rendering
   const containerVariants = {
     hidden: { opacity: 0, scale: 0.97, y: 20 },
     visible: { 
@@ -47,19 +44,15 @@ export default function LandingPage() {
 
   return (
     <main className="relative min-h-screen bg-white text-slate-900 flex flex-col items-center justify-center p-6 overflow-hidden">
-      
-      {/* Structural Isolated View Layout Layers */}
       <BackgroundOrbs />
       <MetricBanner />
 
-      {/* Main Glassmorphic Panel Core Workspace */}
       <motion.div 
         variants={containerVariants} 
         initial="hidden" 
         animate="visible"
         className="relative max-w-md w-full bg-white/60 backdrop-blur-lg border border-slate-200/80 p-8 rounded-3xl shadow-xl shadow-slate-200/50 z-10 mt-12"
       >
-        {/* Accent Identity Banner */}
         <div className="flex justify-center mb-5 overflow-hidden">
           <motion.span 
             initial={{ y: -10, opacity: 0 }}

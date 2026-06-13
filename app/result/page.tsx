@@ -4,7 +4,6 @@ import { useEffect, useState, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { GemstoneExtended } from '@/data/gemstones';
 
-// Modular Sub-Components Imports
 import ResultHeader from '@/components/ResultHeader';
 import GemstoneCard from '@/components/GemstoneCard';
 import ResultSkeleton from '@/components/ResultSkeleton';
@@ -81,7 +80,6 @@ function ResultContent() {
   );
 }
 
-// Separate logic safety wrapper block to satisfy Next.js client hook optimization rules
 function IngestionSuspenseBoundary() {
   return (
     <Suspense fallback={<ResultSkeleton />}>

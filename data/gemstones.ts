@@ -2,7 +2,7 @@ import { Gemstone } from '@/types';
 
 export interface GemstoneExtended extends Gemstone {
   priceTier: 'Premium' | 'Elite' | 'Royal';
-  rarity: number; // 1 to 5 Stars
+  rarity: number;
 }
 
 export const GEMSTONE_DATA: GemstoneExtended[] = [
